@@ -24,7 +24,7 @@ typedef struct {
     void (*processEntry)();
 //    void (*processBreakPoint)();
 //    uint32_t* stackTop_ptr;
-    uint8_t* stack;
+    uint32_t* stack;
     uint32_t processStackPointer;
 } ProcessControlBlock_Def;
 
