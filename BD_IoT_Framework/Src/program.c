@@ -49,13 +49,8 @@ void init() {
     __set_CONTROL(0x3);        // Switch to use Process Stack, unprivileged state
     __ISB();                            // Execute ISB after changing CONTROL (architectural recommendation)
                                         // 清空流水线（指令集建议）
-
-
     InitFinish_Flag_GV = 1;             // 立起flag以允许进程切换
-
-
     printf("[DEBUG] At init() -- Init finish\r\n");
-
 
     UserProcess_0_Func();
 }
