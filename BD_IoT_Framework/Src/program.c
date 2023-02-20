@@ -10,9 +10,10 @@ void init() {
     /* Debug Code */
     uint32_t tmp;
     printf("[DEBUG] At init() -- Addr of tmp: %08x\r\n", &tmp);
-    HAL_Delay(500);
+    HAL_Delay(3000);
 
     /* Add process here BEGIN */
+
     UserProcess_0_PCB_GV.processEntry = UserProcess_0_Func;
     UserProcess_0_PCB_GV.stack = UserProcess_0_Stack_GArr;
     // 初始化进程的初始Stack Pointer
@@ -30,6 +31,14 @@ void init() {
     UserProcess_1_PCB_GV.processStackPointer = ((uint32_t) UserProcess_1_Stack_GArr) + sizeof(UserProcess_1_Stack_GArr) - (16 * 4);
     *(uint32_t*)(((uint32_t) UserProcess_1_Stack_GArr) + sizeof(UserProcess_1_Stack_GArr) - (1 * 4)) = 0x01000000;
     *(uint32_t*)(((uint32_t) UserProcess_1_Stack_GArr) + sizeof(UserProcess_1_Stack_GArr) - (2 * 4)) = (uint32_t)UserProcess_1_PCB_GV.processEntry;
+
+
+    List_InitEmptyList_typeFunc(&(PCB_Container_GV.listHead));
+
+    List_InsertToHead_typeFunc(&(UserProcess_0_PCB_GV.node), &(PCB_Container_GV.listHead));
+    List_InsertToHead_typeFunc(&(UserProcess_1_PCB_GV.node), &(PCB_Container_GV.listHead));
+
+
     /* Add process here END */
 
     // 将当前执行的进程设置为进程0

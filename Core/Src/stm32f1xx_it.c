@@ -177,6 +177,10 @@ void PendSV_Handler(void) {
     /* USER CODE BEGIN PendSV_IRQn 1 */
 
     printf("[DEBUG] PCP of next process: %08lx\r\n", NextProcess_Ptr_GV->processStackPointer);
+
+    printf("[DEBUG] UserProcess_0 PCB addr: %08lx, UserProcess_1 PCB addr: %08lx\r\n", &UserProcess_0_PCB_GV, &UserProcess_1_PCB_GV);
+    printf("[DEBUG] Old PCB addr: %08lx, New PCB addr: %08lx\r\n", CurrentProcess_Ptr_GV, NextProcess_Ptr_GV);
+
     // -- Load new context --
     // Change PCB pointer of current process
     CurrentProcess_Ptr_GV = NextProcess_Ptr_GV;

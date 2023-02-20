@@ -9,9 +9,12 @@
 #include "interrupt.h"
 #include "ProcessManagement.h"
 #include "UserProcess.h"
+#include "DoubleLinkedList.h"
 //#include "KeyDetection.h"
 
 extern uint8_t InitFinish_Flag_GV;
+
+//extern PCB_Container_Def PCB_Container_GV;
 
 
 void init();
