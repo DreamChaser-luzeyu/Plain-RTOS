@@ -45,6 +45,8 @@ extern ProcessControlBlock_Def* CurrentProcess_Ptr_GV;
 extern ProcessControlBlock_Def* NextProcess_Ptr_GV;
 extern ProcessControlBlock_Def UserProcess_0_PCB_GV;
 extern ProcessControlBlock_Def UserProcess_1_PCB_GV;
+extern ProcessControlBlock_Def UserProcess_2_PCB_GV;
+extern ProcessControlBlock_Def UserProcess_3_PCB_GV;
 
 extern PCB_Container_Def PCB_Container_GV;
 
