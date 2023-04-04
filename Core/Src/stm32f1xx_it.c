@@ -62,6 +62,8 @@
 extern PCD_HandleTypeDef hpcd_USB_FS;
 /* USER CODE BEGIN EV */
 
+uint8_t ScheduleProcess_Flag = 0;
+
 /* USER CODE END EV */
 
 /******************************************************************************/
@@ -161,7 +163,7 @@ void DebugMon_Handler(void) {
   */
 void PendSV_Handler(void) {
     /* USER CODE BEGIN PendSV_IRQn 0 */
-    printf("[DEBUG] PendSV Handler called.\r\n");
+//    printf("[DEBUG] PendSV Handler called.\r\n");
     // -- Save SP Register --
     if(CurrentProcess_Ptr_GV != NULL) {
         __asm__(
@@ -172,17 +174,17 @@ void PendSV_Handler(void) {
                 :
                 );
 
-        printf("[DEBUG] PendSV Saved PSP val: %08lx\r\n", CurrentProcess_Ptr_GV->processStackPointer);
+//        printf("[DEBUG] PendSV Saved PSP val: %08lx\r\n", CurrentProcess_Ptr_GV->processStackPointer);
     }
 
     /* USER CODE END PendSV_IRQn 0 */
     /* USER CODE BEGIN PendSV_IRQn 1 */
 
-    printf("[DEBUG] PCP of next process: %08lx\r\n", NextProcess_Ptr_GV->processStackPointer);
-
-    printf("[DEBUG] UserProcess_0 PCB addr: %08lx, UserProcess_1 PCB addr: %08lx, UserProcess_2 PCB addr: %08lx\r\n", &UserProcess_0_PCB_GV, &UserProcess_1_PCB_GV, &UserProcess_2_PCB_GV);
-    printf("[DEBUG] UserProcess_0 PCB addr: %08lx, UserProcess_1 PCB addr: %08lx\r\n", &(UserProcess_0_PCB_GV.node), &(UserProcess_1_PCB_GV.node));
-    printf("[DEBUG] Old PCB addr: %08lx, New PCB addr: %08lx\r\n", CurrentProcess_Ptr_GV, NextProcess_Ptr_GV);
+//    printf("[DEBUG] PCP of next process: %08lx\r\n", NextProcess_Ptr_GV->processStackPointer);
+//
+//    printf("[DEBUG] UserProcess_0 PCB addr: %08lx, UserProcess_1 PCB addr: %08lx, UserProcess_2 PCB addr: %08lx\r\n", &UserProcess_0_PCB_GV, &UserProcess_1_PCB_GV, &UserProcess_2_PCB_GV);
+//    printf("[DEBUG] UserProcess_0 PCB addr: %08lx, UserProcess_1 PCB addr: %08lx\r\n", &(UserProcess_0_PCB_GV.node), &(UserProcess_1_PCB_GV.node));
+//    printf("[DEBUG] Old PCB addr: %08lx, New PCB addr: %08lx\r\n", CurrentProcess_Ptr_GV, NextProcess_Ptr_GV);
 
     // -- Load new context --
     // Change PCB pointer of current process
@@ -205,10 +207,11 @@ void SysTick_Handler(void) {
     tick_counter++;
 
 
-    if (tick_counter >= 500) {
+    if (tick_counter >= 100) {
 //        printf("*\r\n");
 //        printf(" %d ", tick_counter);
         DoContextSwitchInterrupt_Func();
+//        ScheduleProcess_Flag = 1;
         tick_counter = 0;
     }
 

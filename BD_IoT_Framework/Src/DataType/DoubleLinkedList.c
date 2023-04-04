@@ -42,7 +42,7 @@ void List_RemoveNode_typeFunc(DoubleLinkedList_Node_Def* node, DoubleLinkedList_
         DoubleLinkedList_Node_Def* nodeAfterNode = node->next;
         nodeBeforeNode->next = nodeAfterNode;
         nodeAfterNode->prev = nodeBeforeNode;
-        free(node);
+//        free(node);
     }
 }
 

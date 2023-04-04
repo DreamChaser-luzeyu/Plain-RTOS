@@ -14,12 +14,3 @@ void DetectAllKeys_Func() {
     PullUpRow_HDFunc(CurrentRowIndex_GV);
     updateRowIndex_pFunc();
 }
-
-//void readCurrentRow_pFunc() {
-//    for(uint16_t i = 0; i < COL_SIZE; i++) {
-//        if(ReadCol_HDFunc(i) == 0) {
-//            // 按键被按下
-//            DoBehavior_Func(CurrentRowIndex_GV, i);
-//        }
-//    }
-//}

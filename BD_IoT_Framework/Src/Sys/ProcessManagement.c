@@ -49,8 +49,9 @@ void ScheduleProcess_TimeSliceCycle_From_Func(PCB_Container_Def* pcbContainer) {
         }
 
         if(CurrentProcess_Ptr_GV != NextProcess_Ptr_GV) {
-            printf("[INFO ] ScheduleProcess_Func() -- Set PendSV Int\r\n");
             SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk;   // Set PendSV to pending
+            printf("[INFO ] ScheduleProcess_Func() -- Set PendSV Int\r\n");
+
         }
     }
 }

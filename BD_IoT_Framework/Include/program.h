@@ -13,6 +13,7 @@
 //#include "KeyDetection.h"
 
 extern uint8_t InitFinish_Flag_GV;
+//extern uint8_t ScheduleProcess_Flag;
 
 //extern PCB_Container_Def PCB_Container_GV;
 
